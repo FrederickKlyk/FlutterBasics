@@ -8,7 +8,7 @@ class GetItInitializer {
   void setup() {
     sl.registerSingleton<DatabaseHelper>(DatabaseHelper.instance);
 
-    sl.registerSingleton<PageBCubit>(
+    sl.registerFactory(() => 
         PageBCubit(databaseHelper: sl.get<DatabaseHelper>()));
   }
 }
