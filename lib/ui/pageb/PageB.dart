@@ -1,8 +1,9 @@
+import 'package:demo1/ui/utils/SnackBarDefault.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:get_it/get_it.dart';
 
-import 'PageBCubit.dart';
+import 'page_b_cubit.dart';
 
 final GetIt sl = GetIt.instance;
 
@@ -24,11 +25,19 @@ class _PageB extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(title: Text("Page2")),
       body: Center(
-        child: BlocConsumer<PageBCubit, int>(
-            listener: (context, state){
-              
-            },
-            builder: (context, state) => Text("State: $state")),
+        child: BlocConsumer<PageBCubit, PageBState>(
+            listener: (context, state) => state.when(
+                initial: (value) => SnackBarDefault().defaultSnackBar(
+                        context, "Der State ist nun $value", () {
+                      bloc.undo();
+                    }),
+                success: (value) => SnackBarDefault().defaultSnackBar(
+                        context, "Der State ist nun $value", () {
+                      bloc.undo();
+                    })),
+            builder: (context, state) {
+              return Text("State: $state");
+            }),
       ),
       floatingActionButton: Column(
         mainAxisAlignment: MainAxisAlignment.end,
@@ -45,6 +54,7 @@ class _PageB extends StatelessWidget {
           ElevatedButton(
               onPressed: () => bloc.getFromDB(),
               child: Text("Get Data from DB")),
+          SizedBox(height: 8),
         ],
       ),
     );

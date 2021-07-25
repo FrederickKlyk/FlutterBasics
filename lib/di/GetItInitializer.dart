@@ -1,5 +1,5 @@
 import 'package:demo1/io/local/DatabaseHelper.dart';
-import 'package:demo1/ui/pageb/PageBCubit.dart';
+import 'package:demo1/ui/pageb/page_b_cubit.dart';
 import 'package:get_it/get_it.dart';
 
 class GetItInitializer {
