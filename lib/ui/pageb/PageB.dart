@@ -1,4 +1,5 @@
-import 'package:demo1/ui/utils/SnackBarDefault.dart';
+import 'package:demo1/ui/widgets/AppDrawer.dart';
+import 'package:demo1/ui/widgets/SnackBarDefault.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:get_it/get_it.dart';
@@ -8,6 +9,8 @@ import 'page_b_cubit.dart';
 final GetIt sl = GetIt.instance;
 
 class PageB extends StatelessWidget {
+  static const String routeName = '/pageb';
+
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
@@ -24,6 +27,7 @@ class _PageB extends StatelessWidget {
 
     return Scaffold(
       appBar: AppBar(title: Text("Page2")),
+      drawer: AppDrawer(),
       body: Center(
         child: BlocConsumer<PageBCubit, PageBState>(
             listener: (context, state) => state.when(

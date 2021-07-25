@@ -1,4 +1,5 @@
 import 'package:demo1/ui/pageb/PageB.dart';
+import 'package:demo1/ui/widgets/AppDrawer.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -8,6 +9,8 @@ import '../CounterEvent.dart';
 /// A [StatelessWidget] which is responsible for providing a
 /// [CounterCubit] instance to the [CounterView].
 class CounterPage extends StatelessWidget {
+  static const String routeName = '/counterpage';
+
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
@@ -26,6 +29,7 @@ class _CounterPage extends StatelessWidget {
 
     return Scaffold(
       appBar: AppBar(title: Text("Meine CounterApp")),
+      drawer: AppDrawer(),
       body: Center(
         child: BlocBuilder<CounterFlutterBloc, int>(
           builder: (context, state) =>
@@ -34,7 +38,7 @@ class _CounterPage extends StatelessWidget {
       ),
       floatingActionButton: Column(
         mainAxisAlignment: MainAxisAlignment.end,
-        children: [
+        children: <Widget>[
           FloatingActionButton(
               heroTag: "btn1",
               key: Key("counterView_increment_fab"),
