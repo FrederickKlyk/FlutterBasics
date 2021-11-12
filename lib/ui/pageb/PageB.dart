@@ -52,11 +52,11 @@ class _PageB extends StatelessWidget {
           ),
           SizedBox(height: 8),
           ElevatedButton(
-              onPressed: () => bloc.insertIntoDB(),
+              onPressed: () => bloc.addUser(),
               child: Text("Add TV to DB")),
           SizedBox(height: 8),
           ElevatedButton(
-              onPressed: () => bloc.getFromDB(),
+              onPressed: () => bloc.getUserFromFloor(),
               child: Text("Get Data from DB")),
           SizedBox(height: 8),
         ],
