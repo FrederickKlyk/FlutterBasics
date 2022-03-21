@@ -3,7 +3,6 @@ import 'package:demo1/domain/personen_interactor.dart';
 import 'package:demo1/io/local/DatabaseHelper.dart';
 import 'package:demo1/io/local/TVSeries.dart';
 import 'package:demo1/io/local/floor/Person.dart';
-import 'package:demo1/io/local/floor/PersonDao.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:get_it/get_it.dart';
 import 'package:logger/logger.dart';
@@ -17,8 +16,7 @@ class PageBCubit extends Cubit<PageBState> {
   late DatabaseHelper databaseHelper;
   late PersonenInteractor personenInteractor;
 
-  PageBCubit({required DatabaseHelper? databaseHelper, required PersonenInteractor personenInteractor})
-      : super(PageBState.initial()) {
+  PageBCubit({required DatabaseHelper? databaseHelper, required PersonenInteractor personenInteractor}) : super(PageBState.initial()) {
     this.databaseHelper = databaseHelper ?? GetIt.I<DatabaseHelper>();
     this.personenInteractor = personenInteractor;
   }
@@ -51,13 +49,7 @@ class PageBCubit extends Cubit<PageBState> {
   }
 
   void insertIntoDB() async {
-    final tvSeriesMap = {
-      'id': 1,
-      'title': "test",
-      'episodes': 2,
-      'image': '',
-      'description': 'nothing'
-    };
+    final tvSeriesMap = {'id': 1, 'title': "test", 'episodes': 2, 'image': '', 'description': 'nothing'};
     final result = await dbHelper.addTVSeries(TVSeries.fromDbMap(tvSeriesMap));
     logger.d("Film hinzugefügt mit id: $result");
   }
